@@ -34,12 +34,13 @@ function getAuthorizationHeader(accessKey: string, secretKey: string, region: st
 }
 
 export async function searchAmazonProducts(keyword: string) {
-  const accessKey = process.env.AMAZON_ACCESS_KEY!;
-  const secretKey = process.env.AMAZON_SECRET_KEY!;
-  const associateTag = process.env.AMAZON_ASSOCIATE_TAG!;
+  const accessKey = process.env.AMAZON_ACCESS_KEY_ID!;
+  const secretKey = process.env.AMAZON_SECRET_ACCESS_KEY!;
+  const associateTag = process.env.AMAZON_ASSOCIATE_TAG!; // これはOK
+  
 
   const host = 'webservices.amazon.co.jp';
-  const region = 'us-west-2';
+  const region = 'us-east-1';
   const service = 'ProductAdvertisingAPI';
   const endpoint = `https://${host}/paapi5/searchitems`;
 
@@ -86,9 +87,10 @@ export async function searchAmazonProducts(keyword: string) {
       image: item.Images?.Primary?.Medium?.URL,
     }));
   } catch (error: any) {
-    console.error('Amazon API error:', error.response ? error.response.data : error.message);
+    console.error('Amazon API error FULL:', error);
     throw new Error(error.response ? JSON.stringify(error.response.data) : error.message);
   }
+  
 }
 
 function getAmzDate() {
