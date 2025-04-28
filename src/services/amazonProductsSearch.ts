@@ -87,8 +87,14 @@ export async function searchAmazonProducts(keyword: string) {
       image: item.Images?.Primary?.Medium?.URL,
     }));
   } catch (error: any) {
-    console.error('Amazon API error FULL:', error);
-    throw new Error(error.response ? JSON.stringify(error.response.data) : error.message);
+    const errorMessage = error.response
+      ? JSON.stringify(error.response.data)
+      : error.message || 'Unknown error';
+  
+    console.error('Amazon API error FULL:', errorMessage);
+    
+    // ここ！
+    throw new Error(errorMessage);
   }
   
 }
