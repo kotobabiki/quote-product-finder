@@ -1,8 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    experimental: {
-      appDir: true, // ← これを追加するのがポイント！
-    },
+    // もう experimental はいらない
   }
   
   export default nextConfig;
