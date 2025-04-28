@@ -1,8 +1,9 @@
 export default function Home() {
     return (
-      <main>
-        <h1>Hello, world!</h1>
-      </main>
+      <div>
+        <h1>Hello World</h1>
+        <p>これはテストページです！</p>
+      </div>
     );
   }
   
